@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Instacopy",
+  title: "Thread",
   description: "Basic Instagram clone",
 };
 
