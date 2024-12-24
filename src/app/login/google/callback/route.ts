@@ -20,7 +20,6 @@ export async function GET(request: Request): Promise<Response> {
   const storedState = cookieStore.get("google_oauth_state")?.value ?? null;
   const codeVerifier = cookieStore.get("google_code_verifier")?.value ?? null;
 
-  console.log({ code, state, storedState, codeVerifier });
   if (
     code === null ||
     state === null ||
