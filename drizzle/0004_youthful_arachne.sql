@@ -1,0 +1,1 @@
+ALTER TABLE "posts" ALTER COLUMN "imageuuid" SET DATA TYPE varchar;

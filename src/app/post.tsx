@@ -1,11 +1,17 @@
 "use client";
 
-import { postsTable } from "@/drizzle/schema";
 import UploadcareImage from "@uploadcare/nextjs-loader";
 import { dtf } from "./datetime-format";
 
 type PostProps = {
-  post: typeof postsTable.$inferSelect;
+  post: {
+    postId: number;
+    content: string | null;
+    imageuuid: string;
+    createdAt: Date;
+    userId: number;
+    username: string | null;
+  };
 };
 export function Post({ post }: PostProps) {
   return (
@@ -16,10 +22,13 @@ export function Post({ post }: PostProps) {
         width="400"
         height="400"
       />
-      <time className="text-neutral-600">
+      <time className="text-neutral-600 ml-auto">
         {dtf.format(new Date(post.createdAt))}
       </time>
-      <p className="text-xl text-neutral-900">{post.content}</p>
+      <div>
+        <span className="text-neutral-500">@{post.username}</span>
+        <span className="text-neutral-900"> {post.content}</span>
+      </div>
     </li>
   );
 }

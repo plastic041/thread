@@ -23,7 +23,10 @@ const formSchema = z.object({
   image: typeof window === "undefined" ? z.any() : z.instanceof(FileList),
 });
 
-export function NewPostForm() {
+type NewPostFormProps = {
+  userId: number;
+};
+export function NewPostForm({ userId }: NewPostFormProps) {
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -46,7 +49,7 @@ export function NewPostForm() {
 
     await fetch("api/new-post", {
       method: "POST",
-      body: JSON.stringify({ content, uuid: result.uuid }),
+      body: JSON.stringify({ content, uuid: result.uuid, userId }),
     });
 
     redirect("/");
