@@ -7,13 +7,18 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
+  newpost,
   children,
 }: Readonly<{
+  newpost: React.ReactNode;
   children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <div>{children}</div>
+        <div>{newpost}</div>
+      </body>
     </html>
   );
 }

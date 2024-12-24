@@ -9,6 +9,15 @@ export default {
   ],
   theme: {
     extend: {
+      keyframes: {
+        blur: {
+          "0%": { backdropFilter: "blur(0px)" },
+          "100%": { backdropFilter: "blur(8px)" },
+        },
+      },
+      animation: {
+        blur: "blur 200ms ease forwards",
+      },
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
