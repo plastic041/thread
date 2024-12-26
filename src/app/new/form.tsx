@@ -78,7 +78,12 @@ export function NewPostForm({ userId }: NewPostFormProps) {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Textarea placeholder="..." {...field} rows={8} />
+                <Textarea
+                  placeholder="..."
+                  {...field}
+                  rows={8}
+                  className="resize-none"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

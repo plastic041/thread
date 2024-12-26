@@ -2,8 +2,8 @@ import { integer, pgTable, varchar, timestamp } from "drizzle-orm/pg-core";
 
 export const usersTable = pgTable("users", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  googleId: varchar(),
-  username: varchar(),
+  googleId: varchar().notNull(),
+  username: varchar().notNull(),
 });
 
 export const sessionTable = pgTable("session", {
