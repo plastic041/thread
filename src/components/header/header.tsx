@@ -1,6 +1,6 @@
 import { Avatar } from "@/components/header/avatar";
 import { getCurrentSession } from "@/lib/session";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 
 export async function Header() {
   const { user } = await getCurrentSession();
