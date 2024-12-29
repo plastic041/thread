@@ -2,6 +2,7 @@
 
 import UploadcareImage from "@uploadcare/nextjs-loader";
 import { motion } from "motion/react";
+import { dtf } from "@/app/datetime-format";
 
 const MotionUploadcareImage = motion.create(UploadcareImage);
 
@@ -12,12 +13,12 @@ type PostProps = {
     imageuuid: string;
     createdAt: Date;
     userId: number;
-    username: string | null;
+    username: string;
   };
 };
 export function Post({ post }: PostProps) {
   return (
-    <li className="flex">
+    <div className="flex flex-col p-2">
       <MotionUploadcareImage
         layoutId={`post-image-${post.postId}`}
         layout
@@ -26,13 +27,15 @@ export function Post({ post }: PostProps) {
         width="400"
         height="400"
       />
-      {/* <time className="text-neutral-600 ml-auto">
-        {dtf.format(new Date(post.createdAt))}
-      </time>
-      <div>
-        <span className="text-neutral-500">@{post.username}</span>
-        <span className="text-neutral-900"> {post.content}</span>
-      </div> */}
-    </li>
+      <div className="flex flex-col animate-fadein">
+        <time className="text-neutral-500 ml-auto" suppressHydrationWarning>
+          {dtf.format(new Date(post.createdAt))}
+        </time>
+        <div>
+          <span className="text-neutral-500 text-lg">@{post.username}</span>
+          <span className="text-neutral-900"> {post.content}</span>
+        </div>
+      </div>
+    </div>
   );
 }

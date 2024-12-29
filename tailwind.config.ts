@@ -14,9 +14,14 @@ export default {
           "0%": { backdropFilter: "blur(0px)" },
           "100%": { backdropFilter: "blur(8px)" },
         },
+        fadein: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
       },
       animation: {
         blur: "blur 200ms ease forwards",
+        fadein: "fadein 200ms ease-in-out forwards",
       },
       colors: {
         background: "hsl(var(--background))",

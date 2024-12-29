@@ -3,6 +3,7 @@ import { PostButton } from "@/app/post-button";
 import { db } from "@/drizzle/db";
 import { postsTable, usersTable } from "@/drizzle/schema";
 import { eq } from "drizzle-orm";
+import Link from "next/link";
 
 export default async function Home() {
   const posts = await db
@@ -11,7 +12,7 @@ export default async function Home() {
       content: postsTable.content,
       imageuuid: postsTable.imageuuid,
       createdAt: postsTable.createdAt,
-      userId: usersTable.id,
+      userId: postsTable.userId,
       username: usersTable.username,
     })
     .from(postsTable)
@@ -19,9 +20,11 @@ export default async function Home() {
 
   return (
     <div className="container mx-auto">
-      <ul className="grid grid-cols-1 p-4 bg-slate-300 gap-y-4 min-h-screen place-items-start">
+      <ul className="grid grid-cols-4 p-2 bg-white gap-2 place-items-start">
         {posts.map((post) => (
-          <Post key={post.postId} post={post} />
+          <Link key={post.postId} href={`/posts/${post.postId}`}>
+            <Post post={post} />
+          </Link>
         ))}
       </ul>
 
