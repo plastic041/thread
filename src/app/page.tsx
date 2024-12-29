@@ -3,7 +3,7 @@ import { PostButton } from "@/app/post-button";
 import { db } from "@/drizzle/db";
 import { postsTable, usersTable } from "@/drizzle/schema";
 import { eq } from "drizzle-orm";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 
 export default async function Home() {
   const posts = await db

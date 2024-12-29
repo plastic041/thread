@@ -1,10 +1,7 @@
 "use client";
 
 import UploadcareImage from "@uploadcare/nextjs-loader";
-import { motion } from "motion/react";
 import { dtf } from "@/app/datetime-format";
-
-const MotionUploadcareImage = motion.create(UploadcareImage);
 
 type PostProps = {
   post: {
@@ -19,10 +16,9 @@ type PostProps = {
 export function Post({ post }: PostProps) {
   return (
     <div className="flex flex-col p-2">
-      <MotionUploadcareImage
-        layoutId={`post-image-${post.postId}`}
-        layout
+      <UploadcareImage
         alt="Test image"
+        className="[view-transition-name:img]"
         src={`https://ucarecdn.com/${post.imageuuid}/-/resize/800x/`}
         width="400"
         height="400"

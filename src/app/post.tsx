@@ -1,9 +1,6 @@
 "use client";
 
 import UploadcareImage from "@uploadcare/nextjs-loader";
-import { motion } from "motion/react";
-
-const MotionUploadcareImage = motion.create(UploadcareImage);
 
 type PostProps = {
   post: {
@@ -18,10 +15,9 @@ type PostProps = {
 export function Post({ post }: PostProps) {
   return (
     <li className="flex">
-      <MotionUploadcareImage
-        layoutId={`post-image-${post.postId}`}
-        layout
+      <UploadcareImage
         alt="Test image"
+        className="[view-transition-name:img]"
         src={`https://ucarecdn.com/${post.imageuuid}/-/resize/800x/`}
         width="400"
         height="400"
