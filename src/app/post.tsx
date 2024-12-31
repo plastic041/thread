@@ -18,17 +18,10 @@ export function Post({ post }: PostProps) {
       <UploadcareImage
         alt="Test image"
         className="[view-transition-name:img]"
-        src={`https://ucarecdn.com/${post.imageuuid}/-/resize/800x/`}
-        width="400"
-        height="400"
+        src={`https://ucarecdn.com/${post.imageuuid}/`}
+        width="100"
+        height="100"
       />
-      {/* <time className="text-neutral-600 ml-auto">
-        {dtf.format(new Date(post.createdAt))}
-      </time>
-      <div>
-        <span className="text-neutral-500">@{post.username}</span>
-        <span className="text-neutral-900"> {post.content}</span>
-      </div> */}
     </li>
   );
 }

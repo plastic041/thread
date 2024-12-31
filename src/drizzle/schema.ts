@@ -7,11 +7,11 @@ export const usersTable = pgTable("users", {
 });
 
 export const sessionTable = pgTable("session", {
-  id: varchar("id").primaryKey(),
-  userId: integer("user_id")
+  id: varchar().primaryKey(),
+  userId: integer()
     .notNull()
     .references(() => usersTable.id),
-  expiresAt: timestamp("expires_at", {
+  expiresAt: timestamp("expiresAt", {
     withTimezone: true,
     mode: "date",
   }).notNull(),
@@ -22,7 +22,7 @@ export const postsTable = pgTable("posts", {
   content: varchar(),
   imageuuid: varchar().notNull(),
   createdAt: timestamp().defaultNow().notNull(),
-  userId: integer("user_id")
+  userId: integer()
     .references(() => usersTable.id)
     .notNull(),
 });

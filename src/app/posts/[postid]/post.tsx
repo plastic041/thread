@@ -19,7 +19,7 @@ export function Post({ post }: PostProps) {
       <UploadcareImage
         alt="Test image"
         className="[view-transition-name:img]"
-        src={`https://ucarecdn.com/${post.imageuuid}/-/resize/800x/`}
+        src={`https://ucarecdn.com/${post.imageuuid}/`}
         width="400"
         height="400"
       />
