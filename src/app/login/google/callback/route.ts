@@ -49,15 +49,12 @@ export async function GET(request: Request): Promise<Response> {
   const claims = decodeIdToken(tokens.idToken()) as {
     sub: string;
     name: string;
+    picture: string;
   };
-  const googleUserId = claims.sub;
-  const username = claims.name;
+  const { name, picture, sub } = claims;
 
   const existingUser = (
-    await db
-      .select()
-      .from(usersTable)
-      .where(eq(usersTable.googleId, googleUserId))
+    await db.select().from(usersTable).where(eq(usersTable.googleId, sub))
   )[0];
 
   if (existingUser) {
@@ -75,7 +72,7 @@ export async function GET(request: Request): Promise<Response> {
   const user = (
     await db
       .insert(usersTable)
-      .values({ googleId: googleUserId, username })
+      .values({ googleId: sub, username: name, picture })
       .returning()
   )[0];
 

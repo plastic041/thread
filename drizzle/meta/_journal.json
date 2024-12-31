@@ -43,6 +43,13 @@
       "when": 1735035476607,
       "tag": "0005_youthful_vulture",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1735630832848,
+      "tag": "0006_green_maverick",
+      "breakpoints": true
     }
   ]
 }

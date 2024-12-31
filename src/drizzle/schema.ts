@@ -4,6 +4,7 @@ export const usersTable = pgTable("users", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   googleId: varchar().notNull(),
   username: varchar().notNull(),
+  picture: varchar().notNull(),
 });
 
 export const sessionTable = pgTable("session", {

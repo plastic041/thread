@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
 import { redirect } from "next/navigation";
-import { Loader2Icon } from "lucide-react";
+import { Image, Loader2Icon, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 
@@ -32,10 +32,15 @@ export function NewPostForm({ userId }: NewPostFormProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      image: "",
+      image: null,
       content: "",
     },
   });
+  const fileList = form.watch("image");
+  const imageURL =
+    fileList && fileList.length > 0
+      ? window.URL.createObjectURL(fileList[0])
+      : "";
 
   const imageRef = form.register("image");
 
@@ -63,10 +68,48 @@ export function NewPostForm({ userId }: NewPostFormProps) {
         <FormField
           control={form.control}
           name="image"
-          render={() => (
+          render={({ field }) => (
             <FormItem>
               <FormControl>
-                <input type="file" {...imageRef} />
+                <div className="flex">
+                  {field.value ? (
+                    <div className="grid">
+                      {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
+                      <img
+                        className="[grid-area:1/1] rounded"
+                        src={imageURL}
+                        aria-hidden
+                        onLoad={() => URL.revokeObjectURL(imageURL)}
+                      />
+                      <div className="[grid-area:1/1] flex items-start justify-end p-2">
+                        <Button
+                          size="icon"
+                          variant="outline"
+                          // className="bg-white/50 rounded-full size-12 grid place-items-center"
+                          onClick={() => {
+                            form.resetField("image");
+                          }}
+                        >
+                          <X size={32} />
+                        </Button>
+                      </div>
+                    </div>
+                  ) : (
+                    <Button asChild size="lg" className="w-full">
+                      <label htmlFor="file-upload" aria-hidden>
+                        {/* eslint-disable-next-line jsx-a11y/alt-text */}
+                        <Image />
+                      </label>
+                    </Button>
+                  )}
+                  <input
+                    type="file"
+                    {...imageRef}
+                    accept="image/*"
+                    id="file-upload"
+                    className="sr-only"
+                  />
+                </div>
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -79,7 +122,7 @@ export function NewPostForm({ userId }: NewPostFormProps) {
             <FormItem>
               <FormControl>
                 <Textarea
-                  placeholder="..."
+                  placeholder="What's happening?"
                   {...field}
                   rows={8}
                   className="resize-none"
