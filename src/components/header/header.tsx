@@ -10,7 +10,15 @@ export async function Header() {
       <Link className="text-4xl" href="/">
         😜🧙
       </Link>
-      <Avatar user={user} />
+
+      {/* <Avatar user={user} /> */}
+      {user === null ? (
+        <Link className="" href="/login">
+          Login
+        </Link>
+      ) : (
+        <Avatar user={user} />
+      )}
     </header>
   );
 }
