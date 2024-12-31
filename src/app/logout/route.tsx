@@ -8,9 +8,9 @@ import { NextResponse } from "next/server";
 export async function GET(req: Request) {
   const { session } = await getCurrentSession();
   if (!session) {
-    return {
-      error: "Unauthorized",
-    };
+    return new Response(null, {
+      status: 400,
+    });
   }
 
   await invalidateSession(session.id);
