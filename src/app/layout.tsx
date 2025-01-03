@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/header/header";
 import { ViewTransitions } from "next-view-transitions";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Thread",
@@ -22,6 +23,7 @@ export default function RootLayout({
           <Header />
           <div className="grow">{children}</div>
           <div>{newpost}</div>
+          <Toaster />
         </body>
       </html>
     </ViewTransitions>

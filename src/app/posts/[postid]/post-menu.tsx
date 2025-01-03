@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Ellipsis } from "lucide-react";
 import { redirect } from "next/navigation";
+import { toast } from "sonner";
 
 type PostMenuProps = {
   postId: number;
@@ -35,6 +36,7 @@ export function PostMenu({ postId }: PostMenuProps) {
               method: "DELETE",
               body: JSON.stringify({ postId }),
             });
+            toast("Post deleted.");
 
             redirect("/");
           }}
