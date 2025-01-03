@@ -1,16 +1,10 @@
 "use client";
 
+import { postsTable } from "@/drizzle/schema";
 import UploadcareImage from "@uploadcare/nextjs-loader";
 
 type PostProps = {
-  post: {
-    postId: number;
-    content: string | null;
-    imageuuid: string;
-    createdAt: Date;
-    userId: number;
-    username: string | null;
-  };
+  post: typeof postsTable.$inferSelect;
 };
 export function Post({ post }: PostProps) {
   return (
@@ -21,6 +15,7 @@ export function Post({ post }: PostProps) {
         src={`https://ucarecdn.com/${post.imageuuid}/`}
         width="100"
         height="100"
+        referrerPolicy="no-referrer"
       />
     </li>
   );

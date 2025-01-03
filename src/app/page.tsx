@@ -1,28 +1,17 @@
-import { Post } from "@/app/post";
+import { Post } from "@/components/postitem";
 import { PostButton } from "@/app/post-button";
 import { db } from "@/drizzle/db";
-import { postsTable, usersTable } from "@/drizzle/schema";
-import { eq } from "drizzle-orm";
+import { postsTable } from "@/drizzle/schema";
 import { Link } from "next-view-transitions";
 
 export default async function Home() {
-  const posts = await db
-    .select({
-      postId: postsTable.id,
-      content: postsTable.content,
-      imageuuid: postsTable.imageuuid,
-      createdAt: postsTable.createdAt,
-      userId: postsTable.userId,
-      username: usersTable.username,
-    })
-    .from(postsTable)
-    .innerJoin(usersTable, eq(postsTable.userId, usersTable.id));
+  const posts = await db.select().from(postsTable);
 
   return (
     <div className="container mx-auto">
       <ul className="grid grid-cols-4 p-2 bg-white gap-2 place-items-start">
         {posts.map((post) => (
-          <Link key={post.postId} href={`/posts/${post.postId}`}>
+          <Link key={post.id} href={`/posts/${post.id}`}>
             <Post post={post} />
           </Link>
         ))}

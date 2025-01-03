@@ -23,6 +23,7 @@ export function Post({ post }: PostProps) {
           src={`https://ucarecdn.com/${post.imageuuid}/`}
           width="400"
           height="400"
+          referrerPolicy="no-referrer"
         />
         <time
           dateTime={post.createdAt.toISOString()}

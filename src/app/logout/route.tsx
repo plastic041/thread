@@ -3,14 +3,13 @@ import {
   invalidateSession,
   deleteSessionTokenCookie,
 } from "@/lib/session";
+import { redirect } from "next/navigation";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
   const { session } = await getCurrentSession();
   if (!session) {
-    return new Response(null, {
-      status: 400,
-    });
+    return redirect("/");
   }
 
   await invalidateSession(session.id);

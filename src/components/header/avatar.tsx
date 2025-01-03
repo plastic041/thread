@@ -9,6 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import Link from "next/link";
 
 type AvatarProps = {
   user: NonNullable<SessionValidationResult["user"]>;
@@ -27,9 +28,11 @@ export function Avatar({ user }: AvatarProps) {
         />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
-        <DropdownMenuLabel>{user.username}</DropdownMenuLabel>
+        <DropdownMenuLabel asChild>
+          <Link href={`/profile/${user.id}`}>{user.username}</Link>
+        </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem asChild>
+        <DropdownMenuItem asChild className="text-red-500">
           <a href="/logout">Log out</a>
         </DropdownMenuItem>
       </DropdownMenuContent>
