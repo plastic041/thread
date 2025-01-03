@@ -5,7 +5,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
@@ -28,9 +27,9 @@ export function Avatar({ user }: AvatarProps) {
         />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
-        <DropdownMenuLabel asChild>
+        <DropdownMenuItem asChild>
           <Link href={`/profile/${user.id}`}>{user.username}</Link>
-        </DropdownMenuLabel>
+        </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild className="text-red-500">
           <a href="/logout">Log out</a>

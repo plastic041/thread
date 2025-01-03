@@ -23,5 +23,9 @@ export default async function Page({
       .where(eq(postsTable.id, Number((await params).postid)))
   )[0];
 
-  return <Post post={post} />;
+  return (
+    <div className="p-4">
+      <Post post={post} />
+    </div>
+  );
 }
