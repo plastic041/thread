@@ -9,7 +9,7 @@ export default async function Page({
   const { postid } = await params;
 
   return (
-    <div className="p-4">
+    <div className="p-2">
       <Suspense
         fallback={
           <div className="flex flex-col gap-2 [grid-area:1/1]">

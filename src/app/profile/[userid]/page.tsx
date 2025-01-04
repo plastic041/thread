@@ -34,13 +34,13 @@ export default async function Page({
     .where(eq(postsTable.userId, userId));
 
   return (
-    <div className="flex flex-col w-full p-4 gap-4">
+    <div className="flex flex-col p-2 gap-2">
       <Info
         username={user.username}
         imageCount={posts.length}
         picture={user.picture}
       />
-      <ul className="grid grid-cols-4 p-2 bg-white gap-2 place-items-start">
+      <ul className="grid grid-cols-4 gap-2 place-items-center">
         {posts.map((post) => (
           <Link key={post.id} href={`/posts/${post.id}`}>
             <PostItem post={post} />

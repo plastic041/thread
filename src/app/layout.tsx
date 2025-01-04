@@ -19,10 +19,10 @@ export default function RootLayout({
   return (
     <ViewTransitions>
       <html lang="en" className="h-full">
-        <body className="flex flex-col h-full">
+        <body className="flex flex-col h-full bg-neutral-100">
           <Header />
-          <div className="grow">{children}</div>
-          <div>{newpost}</div>
+          <div className="grow w-[42rem] mx-auto">{children}</div>
+          <div className="max-w-2xl mx-auto">{newpost}</div>
           <Toaster />
         </body>
       </html>

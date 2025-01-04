@@ -52,12 +52,13 @@ export function NewPostForm({ userId }: NewPostFormProps) {
       store: "auto",
     });
 
-    await fetch("api/new-post", {
+    const postResponse = await fetch("api/new-post", {
       method: "POST",
       body: JSON.stringify({ content, uuid: result.uuid, userId }),
     });
+    const post = await postResponse.json();
 
-    redirect("/");
+    redirect(`/posts/${post.id}`);
   }
   return (
     <Form {...form}>

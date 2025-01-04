@@ -37,9 +37,9 @@ export function PostMenu({ postId }: PostMenuProps) {
               body: JSON.stringify({ postId }),
             });
 
-            redirect("/");
-
             toast("Post deleted.");
+
+            redirect("/");
           }}
         >
           Delete Post

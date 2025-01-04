@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 body {
-  font-family: "pretendard variable" sans-serif;
+  font-family: "pretendard variable", sans-serif;
 }
 
 @layer base {
