@@ -21,11 +21,11 @@ export function Post({ post }: PostProps) {
 
   return (
     <div className="flex flex-col gap-2 [grid-area:1/1]">
-      <div className="p-2 bg-white flex flex-col shadow-md">
+      <div className="p-2 bg-white flex flex-col shadow-md gap-2">
         <div className="relative">
           <UploadcareImage
             alt="Test image"
-            className={`[view-transition-name:img-${post.postId}]`}
+            className={`[view-transition-name:img-${post.postId}] mx-auto w-full aspect-square object-contain`}
             src={`https://ucarecdn.com/${post.imageuuid}/`}
             width="400"
             height="400"
@@ -44,7 +44,7 @@ export function Post({ post }: PostProps) {
         </div>
         <time
           dateTime={post.createdAt.toISOString()}
-          className="text-neutral-500 ml-auto italic"
+          className="text-neutral-500 ml-auto italic leading-4"
           suppressHydrationWarning
         >
           {dtf.format(new Date(post.createdAt))}

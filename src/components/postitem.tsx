@@ -11,10 +11,10 @@ export function PostItem({ post }: PostItemProps) {
     <li className="contents">
       <UploadcareImage
         alt="Test image"
-        className={`[view-transition-name:img-${post.id}] object-cover aspect-square`}
+        className={`[view-transition-name:img-${post.id}] object-cover aspect-square mx-auto`}
         src={`https://ucarecdn.com/${post.imageuuid}/`}
-        width="100"
-        height="100"
+        width="200"
+        height="200"
         referrerPolicy="no-referrer"
       />
     </li>

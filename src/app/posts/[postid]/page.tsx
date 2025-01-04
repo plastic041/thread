@@ -1,31 +1,30 @@
-import { db } from "@/drizzle/db";
-import { Post } from "./post";
-import { postsTable, usersTable } from "@/drizzle/schema";
-import { eq } from "drizzle-orm";
+import { PostLoader } from "@/app/posts/[postid]/post-loader";
+import { Suspense } from "react";
 
 export default async function Page({
   params,
 }: {
   params: Promise<{ postid: string }>;
 }) {
-  const post = (
-    await db
-      .select({
-        postId: postsTable.id,
-        content: postsTable.content,
-        imageuuid: postsTable.imageuuid,
-        createdAt: postsTable.createdAt,
-        userId: postsTable.userId,
-        username: usersTable.username,
-      })
-      .from(postsTable)
-      .innerJoin(usersTable, eq(postsTable.userId, usersTable.id))
-      .where(eq(postsTable.id, Number((await params).postid)))
-  )[0];
+  const { postid } = await params;
 
   return (
     <div className="p-4">
-      <Post post={post} />
+      <Suspense
+        fallback={
+          <div className="flex flex-col gap-2 [grid-area:1/1]">
+            <div className="p-2 bg-white flex flex-col shadow-md gap-2">
+              <div
+                className={`[view-transition-name:img-${postid}] w-full bg-gray-200 mx-auto aspect-square`}
+              />
+              <div className="ml-auto w-28 bg-gray-200 animate-pulse h-4" />
+            </div>
+            <span className="w-28 animate-pulse h-7 bg-gray-200" />
+          </div>
+        }
+      >
+        <PostLoader postId={Number(postid)} />
+      </Suspense>
     </div>
   );
 }
