@@ -8,10 +8,10 @@ type PostItemProps = {
 };
 export function PostItem({ post }: PostItemProps) {
   return (
-    <li className="flex aspect-square">
+    <li className="contents">
       <UploadcareImage
         alt="Test image"
-        className={`[view-transition-name:img-${post.id}] object-cover`}
+        className={`[view-transition-name:img-${post.id}] object-cover aspect-square`}
         src={`https://ucarecdn.com/${post.imageuuid}/`}
         width="100"
         height="100"
