@@ -11,7 +11,7 @@ export function PostItem({ post }: PostItemProps) {
     <li className="flex aspect-square">
       <UploadcareImage
         alt="Test image"
-        className="[view-transition-name:img] object-cover"
+        className={`[view-transition-name:img-${post.id}] object-cover`}
         src={`https://ucarecdn.com/${post.imageuuid}/`}
         width="100"
         height="100"

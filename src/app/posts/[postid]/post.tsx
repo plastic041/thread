@@ -21,11 +21,11 @@ export function Post({ post }: PostProps) {
 
   return (
     <div className="flex flex-col gap-2 [grid-area:1/1]">
-      <div className="animate-fadein p-2 bg-white flex flex-col shadow-md">
+      <div className="p-2 bg-white flex flex-col shadow-md">
         <div className="relative">
           <UploadcareImage
             alt="Test image"
-            className="[view-transition-name:img]"
+            className={`[view-transition-name:img-${post.postId}]`}
             src={`https://ucarecdn.com/${post.imageuuid}/`}
             width="400"
             height="400"
