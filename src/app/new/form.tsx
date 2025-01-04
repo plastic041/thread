@@ -19,7 +19,7 @@ import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
-  content: z.string().min(1).max(140),
+  content: z.string().min(0).max(140),
   image: typeof window === "undefined" ? z.any() : z.instanceof(FileList),
 });
 
