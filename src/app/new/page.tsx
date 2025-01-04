@@ -11,5 +11,9 @@ export default async function NewPost() {
     return <ToLogin />;
   }
 
-  return <NewPostForm userId={user.id} />;
+  return (
+    <div className="my-2 rounded overflow-hidden shadow">
+      <NewPostForm userId={user.id} />
+    </div>
+  );
 }

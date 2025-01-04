@@ -64,7 +64,7 @@ export function NewPostForm({ userId }: NewPostFormProps) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col gap-y-8 p-4"
+        className="flex flex-col gap-y-8 p-4 bg-white"
       >
         <FormField
           control={form.control}

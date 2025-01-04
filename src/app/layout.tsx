@@ -22,7 +22,7 @@ export default function RootLayout({
         <body className="flex flex-col h-full bg-neutral-100">
           <Header />
           <div className="grow w-full max-w-lg mx-auto">{children}</div>
-          <div className="w-full max-w-lg mx-auto">{newpost}</div>
+          <div className="">{newpost}</div>
           <Toaster />
         </body>
       </html>
