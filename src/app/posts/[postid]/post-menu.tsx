@@ -2,6 +2,15 @@
 
 import { Button } from "@/components/ui/button";
 import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -16,37 +25,64 @@ type PostMenuProps = {
 };
 export function PostMenu({ postId }: PostMenuProps) {
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
-          size="icon"
-          variant="outline"
-        >
-          <Ellipsis />
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56">
-        <DropdownMenuItem
-          className="text-red-500"
-          onClick={async () => {
-            await fetch("/api/delete-post", {
-              method: "DELETE",
-              body: JSON.stringify({ postId }),
-            });
+    <Dialog>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+            size="icon"
+            variant="outline"
+          >
+            <Ellipsis />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="w-56">
+          <DialogTrigger asChild>
+            <DropdownMenuItem
+              className="text-red-500"
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+            >
+              Delete Post
+            </DropdownMenuItem>
+          </DialogTrigger>
+        </DropdownMenuContent>
+      </DropdownMenu>
 
-            toast("Post deleted.");
+      <DialogContent
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        <DialogHeader>
+          <DialogTitle>Delete post?</DialogTitle>
+          <DialogDescription>
+            This action cannot be undone. Are you sure you want to permanently
+            delete this post?
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <Button
+            variant="destructive"
+            type="button"
+            onClick={async () => {
+              await fetch("/api/delete-post", {
+                method: "DELETE",
+                body: JSON.stringify({ postId }),
+              });
 
-            redirect("/");
-          }}
-        >
-          Delete Post
-        </DropdownMenuItem>
-        {/* <DropdownMenuSeparator />
-          <DropdownMenuItem></DropdownMenuItem> */}
-      </DropdownMenuContent>
-    </DropdownMenu>
+              toast("Post deleted.");
+
+              redirect("/");
+            }}
+          >
+            Confirm
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }
