@@ -46,20 +46,18 @@ export function NewPostForm({ userId }: NewPostFormProps) {
 
   // 2. Define a submit handler.
   async function onSubmit({ content, image }: z.infer<typeof formSchema>) {
-    if (!form.formState.isSubmitting) {
-      const fileList = image as FileList;
-      const result = await uploadFile(fileList[0], {
-        publicKey: "b038a00ca5884d2edac5",
-        store: "auto",
-      });
+    const fileList = image as FileList;
+    const result = await uploadFile(fileList[0], {
+      publicKey: "b038a00ca5884d2edac5",
+      store: "auto",
+    });
 
-      await fetch("api/new-post", {
-        method: "POST",
-        body: JSON.stringify({ content, uuid: result.uuid, userId }),
-      });
+    await fetch("api/new-post", {
+      method: "POST",
+      body: JSON.stringify({ content, uuid: result.uuid, userId }),
+    });
 
-      redirect("/");
-    }
+    redirect("/");
   }
   return (
     <Form {...form}>
@@ -145,7 +143,11 @@ export function NewPostForm({ userId }: NewPostFormProps) {
           >
             Cancel
           </Button>
-          <Button className="ml-auto grid" type="submit">
+          <Button
+            className="ml-auto grid"
+            type="submit"
+            disabled={form.formState.isSubmitting}
+          >
             <span
               className={cn(
                 "[grid-area:1/1]",
