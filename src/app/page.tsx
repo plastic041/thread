@@ -1,4 +1,4 @@
-import { Post } from "@/components/postitem";
+import { PostItem } from "@/components/postitem";
 import { PostButton } from "@/app/post-button";
 import { db } from "@/drizzle/db";
 import { postsTable } from "@/drizzle/schema";
@@ -12,7 +12,7 @@ export default async function Home() {
       <ul className="grid grid-cols-4 p-2 bg-white gap-2 place-items-start">
         {posts.map((post) => (
           <Link key={post.id} href={`/posts/${post.id}`}>
-            <Post post={post} />
+            <PostItem post={post} />
           </Link>
         ))}
       </ul>

@@ -3,15 +3,15 @@
 import { postsTable } from "@/drizzle/schema";
 import UploadcareImage from "@uploadcare/nextjs-loader";
 
-type PostProps = {
+type PostItemProps = {
   post: typeof postsTable.$inferSelect;
 };
-export function Post({ post }: PostProps) {
+export function PostItem({ post }: PostItemProps) {
   return (
-    <li className="flex">
+    <li className="flex aspect-square">
       <UploadcareImage
         alt="Test image"
-        className="[view-transition-name:img]"
+        className="[view-transition-name:img] object-cover"
         src={`https://ucarecdn.com/${post.imageuuid}/`}
         width="100"
         height="100"

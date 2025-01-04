@@ -46,18 +46,20 @@ export function NewPostForm({ userId }: NewPostFormProps) {
 
   // 2. Define a submit handler.
   async function onSubmit({ content, image }: z.infer<typeof formSchema>) {
-    const fileList = image as FileList;
-    const result = await uploadFile(fileList[0], {
-      publicKey: "b038a00ca5884d2edac5",
-      store: "auto",
-    });
+    if (!form.formState.isSubmitting) {
+      const fileList = image as FileList;
+      const result = await uploadFile(fileList[0], {
+        publicKey: "b038a00ca5884d2edac5",
+        store: "auto",
+      });
 
-    await fetch("api/new-post", {
-      method: "POST",
-      body: JSON.stringify({ content, uuid: result.uuid, userId }),
-    });
+      await fetch("api/new-post", {
+        method: "POST",
+        body: JSON.stringify({ content, uuid: result.uuid, userId }),
+      });
 
-    redirect("/");
+      redirect("/");
+    }
   }
   return (
     <Form {...form}>
@@ -139,6 +141,7 @@ export function NewPostForm({ userId }: NewPostFormProps) {
               router.back();
             }}
             variant="outline"
+            disabled={form.formState.isSubmitting}
           >
             Cancel
           </Button>

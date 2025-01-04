@@ -1,5 +1,5 @@
 import { Info } from "@/app/profile/[userid]/info";
-import { Post } from "@/components/postitem";
+import { PostItem } from "@/components/postitem";
 import { db } from "@/drizzle/db";
 import { postsTable, usersTable } from "@/drizzle/schema";
 import { eq } from "drizzle-orm";
@@ -43,7 +43,7 @@ export default async function Page({
       <ul className="grid grid-cols-4 p-2 bg-white gap-2 place-items-start">
         {posts.map((post) => (
           <Link key={post.id} href={`/posts/${post.id}`}>
-            <Post post={post} />
+            <PostItem post={post} />
           </Link>
         ))}
       </ul>
