@@ -137,7 +137,7 @@ export function NewPostForm({ userId }: NewPostFormProps) {
           <Button
             type="button"
             onClick={() => {
-              router.back();
+              router.push("/");
             }}
             variant="outline"
             disabled={form.formState.isSubmitting}
