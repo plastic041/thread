@@ -13,7 +13,7 @@ export default async function Page() {
 
   return (
     <div className="fixed inset-0 bg-neutral-400/50 animate-blur p-6 flex flex-col">
-      <div className="bg-white shadow rounded">
+      <div className="bg-white shadow rounded max-h-full overflow-y-auto">
         <NewPostForm userId={user.id} />
       </div>
     </div>
