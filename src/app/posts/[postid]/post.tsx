@@ -29,7 +29,6 @@ export function Post({ post }: PostProps) {
             src={`https://ucarecdn.com/${post.imageuuid}/`}
             width="400"
             height="400"
-            referrerPolicy="no-referrer"
           />
           <div
             role="button"

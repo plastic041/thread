@@ -24,6 +24,7 @@ export function Avatar({ user }: AvatarProps) {
           height={40}
           className="rounded-full size-10"
           alt="user picture"
+          referrerPolicy="no-referrer"
         />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">

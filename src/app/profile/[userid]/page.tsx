@@ -1,9 +1,6 @@
-import { Info } from "@/app/profile/[userid]/info";
-import { PostItem } from "@/components/postitem";
-import { db } from "@/drizzle/db";
-import { postsTable, usersTable } from "@/drizzle/schema";
-import { eq } from "drizzle-orm";
-import Link from "next/link";
+import { Suspense } from "react";
+import { Image } from "lucide-react";
+import { ProfileLoader } from "@/app/profile/[userid]/profile-loader";
 
 export default async function Page({
   params,
@@ -12,41 +9,27 @@ export default async function Page({
 }) {
   const userId = Number((await params).userid);
 
-  const users = await db
-    .select({
-      username: usersTable.username,
-      picture: usersTable.picture,
-    })
-    .from(usersTable)
-    .where(eq(usersTable.id, userId));
-  // .innerJoin(usersTable, eq(postsTable.userId, usersTable.id))
-  // .where(eq(postsTable.id, Number((await params).postid)))
-
-  if (users.length === 0) {
-    throw new Error("User not found");
-  }
-
-  const user = users[0];
-
-  const posts = await db
-    .select()
-    .from(postsTable)
-    .where(eq(postsTable.userId, userId));
-
   return (
-    <div className="flex flex-col p-2 gap-2">
-      <Info
-        username={user.username}
-        imageCount={posts.length}
-        picture={user.picture}
-      />
-      <ul className="grid grid-cols-4 gap-2 place-items-center">
-        {posts.map((post) => (
-          <Link key={post.id} href={`/posts/${post.id}`}>
-            <PostItem post={post} />
-          </Link>
-        ))}
-      </ul>
-    </div>
+    <Suspense
+      fallback={
+        <div className="flex flex-col p-2 gap-2">
+          <div className="grid grid-cols-3 rounded bg-white shadow-md p-4 shrink-0">
+            <div className="col-span-1 grid place-content-center">
+              <div className="rounded-full size-24 aspect-square bg-neutral-200" />
+            </div>
+            <div className="flex flex-col px-4 gap-2 col-span-2">
+              <span className="w-28 h-6 bg-neutral-200 animate-pulse" />
+              <div className="flex flex-row gap-2 items-center">
+                {/* eslint-disable-next-line jsx-a11y/alt-text */}
+                <Image size={20} />
+                <span className="w-20 h-5 bg-neutral-200 animate-pulse" />
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    >
+      <ProfileLoader userId={userId} />
+    </Suspense>
   );
 }

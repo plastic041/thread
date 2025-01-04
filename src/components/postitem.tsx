@@ -15,7 +15,6 @@ export function PostItem({ post }: PostItemProps) {
         src={`https://ucarecdn.com/${post.imageuuid}/`}
         width="200"
         height="200"
-        referrerPolicy="no-referrer"
       />
     </li>
   );
