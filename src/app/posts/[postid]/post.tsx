@@ -25,7 +25,7 @@ export function Post({ post }: PostProps) {
         <div className="relative">
           <UploadcareImage
             alt="Test image"
-            className={`[view-transition-name:img-${post.postId}] mx-auto w-full aspect-square object-contain`}
+            className="mx-auto w-full aspect-square object-contain"
             src={`https://ucarecdn.com/${post.imageuuid}/`}
             width="400"
             height="400"

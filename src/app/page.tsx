@@ -2,7 +2,7 @@ import { PostItem } from "@/components/postitem";
 import { PostButton } from "@/app/post-button";
 import { db } from "@/drizzle/db";
 import { postsTable } from "@/drizzle/schema";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 
 export default async function Home() {
   const posts = await db.select().from(postsTable);
